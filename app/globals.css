@@ -20,6 +20,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  min-height: 100dvh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
   background: var(--black);
@@ -30,26 +31,42 @@ body {
 .landing {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
-/* Cinematic fitness video — same Pexels clip as Muscle Factory 24 */
+/* Full-bleed hero video — low opacity, covers phone + laptop */
 .video-background {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--black);
+}
+
+.video-background__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
 .video-background__video {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
   object-fit: cover;
-  transform: scale(1.04);
-  filter: saturate(0.85) contrast(1.05);
+  object-position: center center;
+  opacity: 0.38;
+  filter: saturate(0.9) contrast(1.02);
 }
 
 .video-background__scrim {
@@ -57,9 +74,9 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(10, 10, 10, 0.72) 0%,
-    rgba(10, 10, 10, 0.82) 40%,
-    rgba(10, 10, 10, 0.94) 100%
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(10, 10, 10, 0.72) 45%,
+    rgba(10, 10, 10, 0.88) 100%
   );
 }
 
@@ -74,13 +91,6 @@ body {
   animation: glow-breathe 8s ease-in-out infinite;
 }
 
-.video-background__grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
 
 @keyframes glow-breathe {
   0%,
@@ -89,6 +99,15 @@ body {
   }
   50% {
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-background__video {
+    /* Slightly stronger fill on narrow portrait screens */
+    min-width: 120%;
+    min-height: 120%;
+    opacity: 0.34;
   }
 }
 

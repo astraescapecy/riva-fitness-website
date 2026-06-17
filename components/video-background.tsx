@@ -2,11 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/** Pexels 3253990 — same free gym clip as Muscle Factory 24 (commercial use OK). */
-const PEXELS_VIDEO =
-  "https://videos.pexels.com/video-files/3253990/3253990-uhd_2560_1440_24fps.mp4";
-
-const LOCAL_VIDEO = "/fitness-bg.mp4";
+const HERO_VIDEO = "/hero-bg.mov";
 
 export function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,10 +14,11 @@ export function VideoBackground() {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    video.setAttribute("webkit-playsinline", "true");
 
     const play = () => {
       void video.play().catch(() => {
-        /* Autoplay blocked — static scrim still looks fine */
+        /* Autoplay blocked — scrim still covers the page */
       });
     };
 
@@ -33,22 +30,22 @@ export function VideoBackground() {
 
   return (
     <div className="video-background" aria-hidden="true">
-      <video
-        ref={videoRef}
-        className="video-background__video"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        poster="/riva-logo.png"
-      >
-        <source src={LOCAL_VIDEO} type="video/mp4" />
-        <source src={PEXELS_VIDEO} type="video/mp4" />
-      </video>
+      <div className="video-background__media">
+        <video
+          ref={videoRef}
+          className="video-background__video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        >
+          <source src={HERO_VIDEO} type="video/quicktime" />
+          <source src={HERO_VIDEO} type="video/mp4" />
+        </video>
+      </div>
       <div className="video-background__scrim" />
       <div className="video-background__glow" />
-      <div className="video-background__grain" />
     </div>
   );
 }

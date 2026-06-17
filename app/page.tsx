@@ -37,17 +37,6 @@ export default function HomePage() {
             <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms</a>
           </p>
           <p>© {new Date().getFullYear()} Riva Fitness</p>
-          <p className="video-credit">
-            Background video from{" "}
-            <a
-              href="https://www.pexels.com/video/gym-workout-3253990/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Pexels
-            </a>{" "}
-            (free license)
-          </p>
         </footer>
       </main>
     </div>
