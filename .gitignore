@@ -1,0 +1,7 @@
+.next/
+node_modules/
+.env.local
+.env*.local
+
+# Optional large self-hosted video (run scripts/download-fitness-video.sh)
+public/fitness-bg.mp4
